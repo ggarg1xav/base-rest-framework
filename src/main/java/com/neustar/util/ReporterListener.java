@@ -23,7 +23,7 @@ public class ReporterListener implements IReporter {
 
 	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
-      extent = new ExtentReports(outputDirectory + File.separator + "ExtentReportsTestNG.html", true);
+      extent = new ExtentReports(outputDirectory + File.separator + "Report.html", true);
         extent.loadConfig(new File("extent-config.xml"));
 
 		for (ISuite suite : suites) {
