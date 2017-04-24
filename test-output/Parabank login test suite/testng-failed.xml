@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Parabank login test suite]">
+  <test name="RestApi(failed)">
+    <classes>
+      <class name="com.neustar.test.DemoTest">
+        <methods>
+          <include name="validateApiRequest"/>
+        </methods>
+      </class> <!-- com.neustar.test.DemoTest -->
+    </classes>
+  </test> <!-- RestApi(failed) -->
+</suite> <!-- Failed suite [Parabank login test suite] -->
