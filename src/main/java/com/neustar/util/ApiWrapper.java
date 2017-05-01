@@ -30,20 +30,14 @@ public class ApiWrapper {
 	private String url;
 	private Logger logger = Logger.getLogger(ApiWrapper.class.getName());
 	   
-	  
 	public ApiWrapper(String url, String user, String password) {
 		try {
-			
-			
+
 			List<Header> headerList = new ArrayList<Header>();
 			headerList.add(new BasicHeader("Content-Type", "application/json;charset=UTF-8"));
-			headerList.add(new BasicHeader("Authorization", "Basic "
-					+ getAuthorization(user, password)));
-			 
-			 
-			
-			httpClient = HttpClientBuilder.create()
-					.setDefaultHeaders(headerList).build();
+			headerList.add(new BasicHeader("Authorization", "Basic " + getAuthorization(user, password)));
+
+			httpClient = HttpClientBuilder.create().setDefaultHeaders(headerList).build();
 			this.url = url + "/index.php?/api/v2/";
 			logger.fine("Created API client for " + url);
 		} catch (Exception e) {
@@ -67,12 +61,10 @@ public class ApiWrapper {
 	 *      /APIClient.java
 	 */
 	private String getBase64(byte[] buffer) {
-		final char[] map = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-				'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
-				'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-				'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-				'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5',
-				'6', '7', '8', '9', '+', '/' };
+		final char[] map = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+				'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+				'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7',
+				'8', '9', '+', '/' };
 
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < buffer.length; i++) {
@@ -119,16 +111,14 @@ public class ApiWrapper {
 		return sb.toString();
 	}
 
-	public String invokeHttpGet(String uriSuffix) throws IOException,
-			ClientException {
+	public String invokeHttpGet(String uriSuffix) throws IOException, ClientException {
 		System.setProperty("jsse.enableSNIExtension", "false");
 		logger.fine("Invoking " + uriSuffix);
 		HttpGet httpGet = new HttpGet(url + uriSuffix);
 		return consumeResponse(httpClient.execute(httpGet));
 	}
 
-	public String invokeHttpPost(String uriSuffix, String jsonData)
-			throws IOException, ClientException {
+	public String invokeHttpPost(String uriSuffix, String jsonData) throws IOException, ClientException {
 		System.setProperty("jsse.enableSNIExtension", "false");
 		System.out.println(jsonData);
 		logger.fine("Invoking " + uriSuffix + " with jsonData " + jsonData);
@@ -138,8 +128,7 @@ public class ApiWrapper {
 		return consumeResponse(httpClient.execute(httpPost));
 	}
 
-	public String consumeResponse(HttpResponse response)
-			throws ClientException, IOException {
+	public String consumeResponse(HttpResponse response) throws ClientException, IOException {
 		int status = response.getStatusLine().getStatusCode();
 		HttpEntity entity = response.getEntity();
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -152,8 +141,7 @@ public class ApiWrapper {
 		logger.fine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 		if (status != 200) {
-			throw new ClientException("Received status code " + status
-					+ " with content '" + content + "'");
+			throw new ClientException("Received status code " + status + " with content '" + content + "'");
 		}
 
 		return content;

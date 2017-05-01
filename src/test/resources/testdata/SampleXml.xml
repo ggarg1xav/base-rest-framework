@@ -1,0 +1,14 @@
+<env>
+	<QA>
+		<firstname>Guneet</firstname>
+		<lastname>Garg</lastname>
+		<nickname>guneet</nickname>
+		<salary>100000</salary>
+	</QA>
+	<Prod>
+		<firstname>low</firstname>
+		<lastname>yin fong</lastname>
+		<nickname>fong fong</nickname>
+		<salary>200000</salary>
+	</Prod>
+</env>
